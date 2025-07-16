@@ -1,23 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import Header from './components/Header';
+import HeroSection from './components/HeroSection';
+import ProductExplorer from './components/ProductExplorer';
+import Footer from './components/Footer';
+import './styles/App.css';
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('home');
+  const [selectedPart, setSelectedPart] = useState(null);
+
+  const navigateTo = (page) => {
+    setCurrentPage(page);
+    window.scrollTo(0, 0);
+  };
+
+  const openPartDetails = (part) => {
+    setSelectedPart(part);
+  };
+
+  const closePartDetails = () => {
+    setSelectedPart(null);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="app">
+      <Header navigateTo={navigateTo} currentPage={currentPage} />
+      <main>
+        {currentPage === 'home' ? (
+          <HeroSection navigateTo={navigateTo} />
+        ) : (
+          <ProductExplorer 
+            openPartDetails={openPartDetails} 
+            selectedPart={selectedPart}
+            closePartDetails={closePartDetails}
+          />
+        )}
+      </main>
+      <Footer />
     </div>
   );
 }

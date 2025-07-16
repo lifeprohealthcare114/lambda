@@ -1,0 +1,132 @@
+.virtual-tour {
+  padding: 0 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.virtual-tour h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.tour-container {
+  position: relative;
+  margin: 2rem auto;
+}
+
+.device-view {
+  position: relative;
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 10px;
+}
+
+.device-image {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  display: block;
+}
+
+.component-marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  z-index: 10;
+   transition: opacity 0.3s ease;
+}
+.close-tooltip {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: #7f8c8d;
+  padding: 0 5px;
+}
+
+.close-tooltip:hover {
+  color: #e74c3c;
+}
+.marker-dot {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background-color: #3498db;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.component-marker:hover .marker-dot,
+.component-marker.active .marker-dot {
+  transform: scale(1.5);
+  background-color: #e74c3c;
+}
+
+.component-tooltip {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 1rem;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  width: 220px;
+  z-index: 20;
+  margin-top: 10px;
+}
+
+.component-tooltip h3 {
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.component-tooltip p {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.device-image {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (max-width: 768px) {
+  .virtual-tour {
+    padding: 0 1rem;
+  }
+  
+  .device-view {
+    padding: 1rem;
+  }
+  
+  .component-tooltip {
+    width: 180px;
+    font-size: 0.8rem;
+  }
+}
