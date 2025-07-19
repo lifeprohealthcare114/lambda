@@ -38,7 +38,6 @@
   transition: all 0.3s ease;
   touch-action: none;
 }
-
 .device-image {
   width: 100%;
   display: block;
@@ -166,14 +165,14 @@
   border-color: #2c3e50 transparent transparent;
 }
 
-.hotspot:hover .hotspot-tooltip {
+/* .hotspot:hover .hotspot-tooltip {
   opacity: 1;
   visibility: visible;
   top: -45px;
-}
+} */
 
 .hotspot.feature .marker {
-  background: #2ecc71;
+  background: #405f4d;
 }
 
 .hotspot:hover .marker,
@@ -234,7 +233,6 @@
 
 .modal-header {
   padding: 1.5rem 1.5rem 0;
-  position: sticky;
   top: 0;
   background: white;
   z-index: 10;
@@ -259,22 +257,30 @@
 }
 
 .modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(255,255,255,0.9);
-  border: none;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  z-index: 11;
+      position: sticky;
+    top: -1rem;
+    /* right: 71rem; */
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 11;
+    left: 100%;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .modal-close:hover {
@@ -695,4 +701,57 @@
     width: 16px;
     height: 16px;
   }
+}.hotspot {
+  position: absolute;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 5;
 }
+
+.hotspot .marker {
+  width: 12px;
+  height: 12px;
+  background-color: red;
+  border-radius: 50%;
+  z-index: 10;
+  display: block;
+}
+
+
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.4);
+    opacity: 0;
+  }
+}
+
+.hotspot .hotspot-tooltip {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  background: #fff;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  font-size: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  pointer-events: none;
+  opacity: 1;
+  visibility: visible;
+  transition: none;
+  margin-left: 8px;
+  z-index: 999;
+}
+.hotspot.zoom-in .hotspot-tooltip,
+.hotspot.zoom-out .hotspot-tooltip {
+  transform: translateY(-50%) scale(0.8);
+}
+

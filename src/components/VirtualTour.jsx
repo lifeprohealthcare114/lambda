@@ -1,220 +1,233 @@
 import React, { useState, useRef, useEffect } from 'react';
 import '../styles/VirtualTour.css';
 
-const deviceComponents = [ {
-      id: 'display',
-      name: 'Interactive Display',
-      position: { top: '41%', left: '28%' },
-      details: (
-        <div className="detail-content">
-          <div className="media-container">
-            <img src="/assets/images/display-detail.jpg" alt="Interactive Display" />
-          </div>
-          <div className="text-content">
-            <h4>Features:</h4>
-            <ul>
-              <li>Intuitive therapist interface</li>
-              <li>50+ preloaded therapy programs</li>
-              <li>Patient progress tracking</li>
-              <li>Multi-language support</li>
-            </ul>
-            <div className="metrics-section">
-              <h4>Clinical Analytics:</h4>
-              <div className="metrics-grid">
-                <div className="metric-item">
-                  <div className="metric-value">100g</div>
-                  <div className="metric-label">Strength resolution</div>
-                </div>
-                <div className="metric-item">
-                  <div className="metric-value">50+</div>
-                  <div className="metric-label">Parameters tracked</div>
-                </div>
-                <div className="metric-item">
-                  <div className="metric-value">0.5°</div>
-                  <div className="metric-label">Angular precision</div>
-                </div>
-              </div>
-            </div>
-            <div className="efficiency-section">
-              <h4>Clinical Efficiency:</h4>
-              <div className="efficiency-stats">
-                <div className="stat-item">
-                  <div className="stat-value">3 min</div>
-                  <div className="stat-label">Setup time</div>
-                </div>
-                <div className="stat-item">
-                  <div className="stat-value">30 min</div>
-                  <div className="stat-label">Per patient</div>
-                </div>
-                <div className="stat-item">
-                  <div className="stat-value">50+/week</div>
-                  <div className="stat-label">Patient capacity</div>
-                </div>
-              </div>
-            </div>
-          </div>
+// Device component definitions
+const deviceComponents = [
+  {
+    id: 'display',
+    name: 'Interactive Display',
+    position: { top: '41%', left: '28%' },
+    details: (
+      <div className="detail-content">
+        <div className="media-container">
+          <img src="/assets/images/display-detail.jpg" alt="Interactive Display" />
         </div>
-      )
-    },
-    {
-      id: 'visualization',
-      name: 'Patient Visualization Screen',
-      position: { top: '30%', left: '65%' },
-      details: (
-        <div className="detail-content">
-          <div className="media-container">
-            <video src="/assets/videos/visualization.mp4" controls autoPlay muted loop playsInline />
-          </div>
-          <div className="text-content">
-            <h4>Therapy Visualization Features:</h4>
-            <ul>
-              <li>Real-time movement tracking with avatar feedback</li>
-              <li>10+ gamified therapy modes</li>
-              <li>Progress indicators and achievement rewards</li>
-              <li>Adjustable difficulty levels</li>
-            </ul>
-            <div className="feature-columns">
-              <div className="feature-column">
-                <h4>Exercise Types:</h4>
-                <ul>
-                  <li>Range of motion guidance</li>
-                  <li>Strength training games</li>
-                  <li>Coordination challenges</li>
-                  <li>Functional movement patterns</li>
-                </ul>
-              </div>
-              <div className="feature-column">
-                <h4>Visual Feedback:</h4>
-                <ul>
-                  <li>3D limb position tracking</li>
-                  <li>Force/effort visualization</li>
-                  <li>Correct vs. actual movement comparison</li>
-                  <li>Therapy progress metrics</li>
-                </ul>
-              </div>
-            </div>
+        <div className="text-content">
+          <h4>Features:</h4>
+          <ul>
+            <li>Intuitive therapist interface</li>
+            <li>50+ preloaded therapy programs</li>
+            <li>Patient progress tracking</li>
+            <li>Multi-language support</li>
+          </ul>
+          <div className="metrics-section">
+            <h4>Clinical Analytics:</h4>
             <div className="metrics-grid">
               <div className="metric-item">
-                <div className="metric-value">10+</div>
-                <div className="metric-label">Game modes</div>
+                <div className="metric-value">100g</div>
+                <div className="metric-label">Strength resolution</div>
               </div>
               <div className="metric-item">
-                <div className="metric-value">5</div>
-                <div className="metric-label">Difficulty levels</div>
+                <div className="metric-value">50+</div>
+                <div className="metric-label">Parameters tracked</div>
               </div>
               <div className="metric-item">
-                <div className="metric-value">100%</div>
-                <div className="metric-label">Patient engagement</div>
+                <div className="metric-value">0.5°</div>
+                <div className="metric-label">Angular precision</div>
+              </div>
+            </div>
+          </div>
+          <div className="efficiency-section">
+            <h4>Clinical Efficiency:</h4>
+            <div className="efficiency-stats">
+              <div className="stat-item">
+                <div className="stat-value">3 min</div>
+                <div className="stat-label">Setup time</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-value">30 min</div>
+                <div className="stat-label">Per patient</div>
+              </div>
+              <div className="stat-item">
+                <div className="stat-value">50+/week</div>
+                <div className="stat-label">Patient capacity</div>
               </div>
             </div>
           </div>
         </div>
-      )
-    },
-    {
-      id: 'pedals',
-      name: 'Adjustable Pedals',
-      description: 'Ergonomic foot positioning system',
-      position: { top: '68%', left: '60%' },
-      details: (
-        <div className="detail-content">
-          <div className="media-container">
-            <video
-              controls
-              autoPlay
-              muted
-              loop
-              playsInline
-              poster="/assets/images/pedals-poster.jpg"
-            >
-              <source src="/assets/videos/pendal.mp4" type="video/mp4" />
-            </video>
+      </div>
+    )
+  },
+  {
+    id: 'visualization',
+    name: 'Patient Visualization Screen',
+    position: { top: '30%', left: '65%' },
+    details: (
+      <div className="detail-content">
+        <div className="media-container">
+          <video src="/assets/videos/visualization.mp4" controls autoPlay muted loop playsInline />
+        </div>
+        <div className="text-content">
+          <h4>Therapy Visualization Features:</h4>
+          <ul>
+            <li>Real-time movement tracking with avatar feedback</li>
+            <li>10+ gamified therapy modes</li>
+            <li>Progress indicators and achievement rewards</li>
+            <li>Adjustable difficulty levels</li>
+          </ul>
+          <div className="feature-columns">
+            <div className="feature-column">
+              <h4>Exercise Types:</h4>
+              <ul>
+                <li>Range of motion guidance</li>
+                <li>Strength training games</li>
+                <li>Coordination challenges</li>
+                <li>Functional movement patterns</li>
+              </ul>
+            </div>
+            <div className="feature-column">
+              <h4>Visual Feedback:</h4>
+              <ul>
+                <li>3D limb position tracking</li>
+                <li>Force/effort visualization</li>
+                <li>Correct vs. actual movement comparison</li>
+                <li>Therapy progress metrics</li>
+              </ul>
+            </div>
           </div>
-          <div className="text-content">
-            <h4>Features:</h4>
-            <ul>
-              <li>6-position height adjustment</li>
-              <li>360° rotation capability</li>
-              <li>Quick-release mechanism</li>
-              <li>Anti-slip surface</li>
-            </ul>
-            <div className="specs-grid">
-              <div className="spec-item">
-                <div className="spec-value">40-80cm</div>
-                <div className="spec-label">Height range</div>
-              </div>
-              <div className="spec-item">
-                <div className="spec-value">150kg</div>
-                <div className="spec-label">Weight capacity</div>
-              </div>
+          <div className="metrics-grid">
+            <div className="metric-item">
+              <div className="metric-value">10+</div>
+              <div className="metric-label">Game modes</div>
+            </div>
+            <div className="metric-item">
+              <div className="metric-value">5</div>
+              <div className="metric-label">Difficulty levels</div>
+            </div>
+            <div className="metric-item">
+              <div className="metric-value">100%</div>
+              <div className="metric-label">Patient engagement</div>
             </div>
           </div>
         </div>
-      )
-    },
-    {
-      id: 'seat',
-      name: '360° Rotating Seat',
-      description: 'Patient transfer system',
-      position: { top: '48%', left: '86%' },
-      details: (
-        <div className="detail-content">
-          <div className="media-container">
-            <video src="/assets/videos/seat-rotation.mp4" controls autoPlay muted loop playsInline />
-          </div>
-          <div className="text-content">
-            <h4>Features:</h4>
-            <ul>
-              <li>Smooth 360° rotation</li>
-              <li>Height adjustable (40-60cm)</li>
-              <li>Retractable armrests</li>
-              <li>150kg weight capacity</li>
-            </ul>
-            <div className="feature-highlight">
-              <div className="highlight-icon">🔄</div>
-              <div className="highlight-text">Full rotation in just 2 seconds with smooth motion control</div>
+      </div>
+    )
+  },
+  {
+    id: 'pedals',
+    name: 'Adjustable Pedals',
+    description: 'Ergonomic foot positioning system',
+    position: { top: '68%', left: '60%' },
+    details: (
+      <div className="detail-content">
+        <div className="media-container">
+          <video
+            controls
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster="/assets/images/pedals-poster.jpg"
+          >
+            <source src="/assets/videos/pendal.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="text-content">
+          <h4>Features:</h4>
+          <ul>
+            <li>6-position height adjustment</li>
+            <li>360° rotation capability</li>
+            <li>Quick-release mechanism</li>
+            <li>Anti-slip surface</li>
+          </ul>
+          <div className="specs-grid">
+            <div className="spec-item">
+              <div className="spec-value">40-80cm</div>
+              <div className="spec-label">Height range</div>
+            </div>
+            <div className="spec-item">
+              <div className="spec-value">150kg</div>
+              <div className="spec-label">Weight capacity</div>
             </div>
           </div>
         </div>
-      )
-    },
-    {
-      id: 'sensors',
-      name: 'Precision Sensors',
-      position: { top: '57%', left: '62%' },
-      details: (
-        <div className="detail-content">
-          <div className="media-container">
-            <img src="/assets/images/sensors-detail.jpg" alt="Precision Sensors" />
-          </div>
-          <div className="text-content">
-            <h4>Biomechanical Measurement System</h4>
-            <ul>
-              <li>Detects 100g strength changes</li>
-              <li>200Hz sampling rate</li>
-              <li>EMG compatible</li>
-              <li>Real-time force vector analysis</li>
-            </ul>
-            <div className="tech-specs">
-              <div className="tech-item">
-                <h5>Accuracy</h5>
-                <p>±0.5% of reading</p>
-              </div>
-              <div className="tech-item">
-                <h5>Range</h5>
-                <p>0-500N</p>
-              </div>
-              <div className="tech-item">
-                <h5>Response Time</h5>
-                <p>&lt;5ms</p>
-              </div>
+      </div>
+    )
+  },
+  {
+    id: 'seat',
+    name: '360° Rotating Seat',
+    description: 'Patient transfer system',
+    position: { top: '48%', left: '86%' },
+    details: (
+      <div className="detail-content">
+        <div className="media-container">
+          <video src="/assets/videos/seat-rotation.mp4" controls autoPlay muted loop playsInline />
+        </div>
+        <div className="text-content">
+          <h4>Features:</h4>
+          <ul>
+            <li>Smooth 360° rotation</li>
+            <li>Height adjustable (40-60cm)</li>
+            <li>Retractable armrests</li>
+            <li>150kg weight capacity</li>
+          </ul>
+          <div className="feature-highlight">
+            <div className="highlight-icon">🔄</div>
+            <div className="highlight-text">
+              Full rotation in just 2 seconds with smooth motion control
             </div>
           </div>
         </div>
-      )
-    }
+      </div>
+    )
+  },
+{
+  id: 'sensors',
+  name: 'Precision Sensors',
+  position: { top: '57%', left: '62%' },
+  details: (
+    <div className="detail-content">
+      <div className="media-container">
+        <video
+          src="/assets/videos/sensors.mp4"
+          controls
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/assets/images/sensors-poster.jpg"
+        />
+      </div>
+      <div className="text-content">
+        <h4>Biomechanical Measurement System</h4>
+        <ul>
+          <li>Detects 100g strength changes</li>
+          <li>200Hz sampling rate</li>
+          <li>EMG compatible</li>
+          <li>Real-time force vector analysis</li>
+        </ul>
+        <div className="tech-specs">
+          <div className="tech-item">
+            <h5>Accuracy</h5>
+            <p>±0.5% of reading</p>
+          </div>
+          <div className="tech-item">
+            <h5>Range</h5>
+            <p>0-500N</p>
+          </div>
+          <div className="tech-item">
+            <h5>Response Time</h5>
+            <p>&lt;5ms</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
 
- ];
+];
+
 const allHotspots = [...deviceComponents];
 
 const VirtualTour = ({ onTourEnd }) => {
@@ -234,15 +247,12 @@ const VirtualTour = ({ onTourEnd }) => {
 
   const estimateReadingTime = () => {
     if (!modalRef.current) return 3000;
-
     const modal = modalRef.current;
-    const textContent = modal.innerText || '';
-    const wordCount = textContent.split(/\s+/).length;
+    const wordCount = (modal.innerText || '').split(/\s+/).length;
     const readingTime = (wordCount / 3) * 100 + 2000;
-
-    const scrollable = modal.scrollHeight > modal.clientHeight;
-    const scrollTime = scrollable ? (modal.scrollHeight - modal.clientHeight) * 20 : 0;
-
+    const scrollTime = modal.scrollHeight > modal.clientHeight
+      ? (modal.scrollHeight - modal.clientHeight) * 20
+      : 0;
     return Math.min(25000, Math.max(5000, readingTime + scrollTime));
   };
 
@@ -267,19 +277,17 @@ const VirtualTour = ({ onTourEnd }) => {
 
   const autoScrollModal = () => {
     return new Promise(resolve => {
-      if (!modalRef.current) return resolve();
-      const modal = modalRef.current;
-      if (modal.scrollHeight <= modal.clientHeight) return resolve();
-
-      let totalScroll = modal.scrollHeight - modal.clientHeight;
+      if (!modalRef.current || modalRef.current.scrollHeight <= modalRef.current.clientHeight)
+        return resolve();
       let scrolled = 0;
+      const totalScroll = modalRef.current.scrollHeight - modalRef.current.clientHeight;
       const step = 2;
       const interval = setInterval(() => {
         if (scrolled >= totalScroll) {
           clearInterval(interval);
           resolve();
         } else {
-          modal.scrollTop += step;
+          modalRef.current.scrollTop += step;
           scrolled += step;
         }
       }, 20);
@@ -321,14 +329,13 @@ const VirtualTour = ({ onTourEnd }) => {
         const maxY = (image.clientHeight * zoomLevel - container.clientHeight) / 2;
         setPosition({
           x: Math.max(-maxX, Math.min(maxX, newX)),
-          y: Math.max(-maxY, Math.min(maxY, newY)),
+          y: Math.max(-maxY, Math.min(maxY, newY))
         });
       }
     }
   };
 
   const handleMouseUp = () => setIsDragging(false);
-
   const handleZoomIn = () => setZoomLevel(prev => Math.min(2, parseFloat((prev + 0.1).toFixed(2))));
   const handleZoomOut = () => setZoomLevel(prev => Math.max(1, parseFloat((prev - 0.1).toFixed(2))));
 
@@ -341,17 +348,13 @@ const VirtualTour = ({ onTourEnd }) => {
           setActiveLabel(hotspot.id);
           setZoomLevel(1.4);
           setPosition({ x: 0, y: 0 });
-
           await new Promise(r => setTimeout(r, 300));
-
           if (modalRef.current) {
             modalRef.current.scrollTo({ top: 0 });
             await waitForVideoEnd(modalRef.current);
             await autoScrollModal();
           }
-
           const delay = estimateReadingTime();
-
           tourTimer = setTimeout(() => {
             setActiveLabel(null);
             if (tourIndex + 1 < allHotspots.length) {
@@ -360,12 +363,7 @@ const VirtualTour = ({ onTourEnd }) => {
               setIsTourActive(false);
               if (typeof onTourEnd === 'function') {
                 setTimeout(() => {
-                  window.scrollTo({
-                    top: window.innerHeight,
-                    behavior: 'smooth'
-                  });
-
-                  // 🔁 Restart the tour after scroll completes
+                  window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
                   const checkScrollEnd = setInterval(() => {
                     if (Math.abs(window.scrollY - window.innerHeight) < 5) {
                       clearInterval(checkScrollEnd);
@@ -401,24 +399,14 @@ const VirtualTour = ({ onTourEnd }) => {
         <div className="tour-controls">
           <button className="start-tour-button" onClick={handleStartTour}>Start Guided Tour</button>
           <button className="pause-tour-button" onClick={handlePauseTour}>Pause Tour</button>
-          <label>
-            Delay:
-            <input
-              type="number"
-              min="1000"
-              step="500"
-              value={tourDelay}
-              onChange={e => setTourDelay(Number(e.target.value))}
-              style={{ width: '80px', marginLeft: '5px' }}
-              disabled={isTourActive}
-            /> ms (manual delay, auto is now active)
-          </label>
         </div>
       </div>
+
       <div className="zoom-controls">
         <button onClick={handleZoomIn} aria-label="Zoom In">+</button>
         <button onClick={handleZoomOut} aria-label="Zoom Out">-</button>
       </div>
+
       <div className="tour-container">
         <div
           className="device-view"
@@ -451,7 +439,10 @@ const VirtualTour = ({ onTourEnd }) => {
                 transform: `translate(-50%, -50%) scale(${1 / zoomLevel})`,
                 transformOrigin: 'center center'
               }}
-              onClick={() => setActiveLabel(hotspot.id === activeLabel ? null : activeLabel)}
+              onClick={() => {
+                setActiveLabel(hotspot.id === activeLabel ? null : hotspot.id);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
               aria-label={hotspot.name}
             >
               <span className="marker"></span>
@@ -461,9 +452,15 @@ const VirtualTour = ({ onTourEnd }) => {
           ))}
         </div>
       </div>
+
       {activeLabel && (
         <div className="modal-overlay" onClick={() => setActiveLabel(null)}>
-          <div className="modal-content" ref={modalRef} onClick={e => e.stopPropagation()} style={{ maxHeight: '80vh', overflowY: 'auto' }}>
+          <div
+            className="modal-content"
+            ref={modalRef}
+            onClick={e => e.stopPropagation()}
+            style={{ maxHeight: '80vh', overflowY: 'auto' }}
+          >
             <button className="modal-close" onClick={() => setActiveLabel(null)} aria-label="Close modal">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
                 <path d="M18 6L6 18" stroke="currentColor" strokeWidth="2" />
@@ -476,9 +473,7 @@ const VirtualTour = ({ onTourEnd }) => {
                 <p>{allHotspots.find(h => h.id === activeLabel)?.description}</p>
               )}
             </div>
-            <div className="modal-body">
-              {allHotspots.find(h => h.id === activeLabel)?.details}
-            </div>
+            {allHotspots.find(h => h.id === activeLabel)?.details}
           </div>
         </div>
       )}
