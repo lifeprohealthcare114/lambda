@@ -24,6 +24,7 @@ const Header = ({ navigateTo }) => {
           tabIndex={0}
           onKeyDown={(e) => e.key === 'Enter' && navigateTo('home')}
         >
+          <img src="/logo.png" alt="Logo" className="logo-image" />
           <span>Lambda</span>
         </div>
       </div>

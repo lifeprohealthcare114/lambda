@@ -747,7 +747,6 @@
   opacity: 1;
   visibility: visible;
   transition: none;
-  margin-left: 8px;
   z-index: 999;
 }
 .hotspot.zoom-in .hotspot-tooltip,

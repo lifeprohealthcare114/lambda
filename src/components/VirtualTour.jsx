@@ -6,7 +6,7 @@ const deviceComponents = [
   {
     id: 'display',
     name: 'Interactive Display',
-    position: { top: '41%', left: '28%' },
+    position: { top: '41%', left: '33%' },
     details: (
       <div className="detail-content">
         <div className="media-container">
@@ -61,7 +61,7 @@ const deviceComponents = [
   {
     id: 'visualization',
     name: 'Patient Visualization Screen',
-    position: { top: '30%', left: '65%' },
+    position: { top: '35%', left: '60%' },
     details: (
       <div className="detail-content">
         <div className="media-container">
@@ -117,7 +117,7 @@ const deviceComponents = [
     id: 'pedals',
     name: 'Adjustable Pedals',
     description: 'Ergonomic foot positioning system',
-    position: { top: '68%', left: '60%' },
+    position: { top: '65%', left: '58%' },
     details: (
       <div className="detail-content">
         <div className="media-container">
@@ -158,7 +158,7 @@ const deviceComponents = [
     id: 'seat',
     name: '360° Rotating Seat',
     description: 'Patient transfer system',
-    position: { top: '48%', left: '86%' },
+    position: { top: '50%', left: '74%' },
     details: (
       <div className="detail-content">
         <div className="media-container">
@@ -185,7 +185,7 @@ const deviceComponents = [
 {
   id: 'sensors',
   name: 'Precision Sensors',
-  position: { top: '57%', left: '62%' },
+  position: { top: '57%', left: '60%' },
   details: (
     <div className="detail-content">
       <div className="media-container">
@@ -239,7 +239,7 @@ const VirtualTour = ({ onTourEnd }) => {
   const [autoZoomDirection, setAutoZoomDirection] = useState('in');
   const [isTourActive, setIsTourActive] = useState(false);
   const [tourIndex, setTourIndex] = useState(0);
-  const [tourDelay, setTourDelay] = useState(3000);
+
 
   const deviceImageRef = useRef(null);
   const deviceViewRef = useRef(null);
@@ -336,8 +336,7 @@ const VirtualTour = ({ onTourEnd }) => {
   };
 
   const handleMouseUp = () => setIsDragging(false);
-  const handleZoomIn = () => setZoomLevel(prev => Math.min(2, parseFloat((prev + 0.1).toFixed(2))));
-  const handleZoomOut = () => setZoomLevel(prev => Math.max(1, parseFloat((prev - 0.1).toFixed(2))));
+ 
 
   useEffect(() => {
     let tourTimer;
@@ -382,32 +381,27 @@ const VirtualTour = ({ onTourEnd }) => {
       runTourStep();
     }
     return () => clearTimeout(tourTimer);
-  }, [tourIndex, isTourActive]);
+  }, );
 
-  const handleStartTour = () => {
-    setIsTourActive(true);
-    setTourIndex(0);
-  };
+  // const handleStartTour = () => {
+  //   setIsTourActive(true);
+  //   setTourIndex(0);
+  // };
 
-  const handlePauseTour = () => setIsTourActive(false);
+  // const handlePauseTour = () => setIsTourActive(false);
 
   return (
     <section className="virtual-tour">
       <div className="tour-header">
         <h2>Interactive Virtual Tour</h2>
         <p className="subtitle">Explore the Lambda device features and benefits</p>
-        <div className="tour-controls">
+        {/* <div className="tour-controls">
           <button className="start-tour-button" onClick={handleStartTour}>Start Guided Tour</button>
           <button className="pause-tour-button" onClick={handlePauseTour}>Pause Tour</button>
-        </div>
+        </div> */}
       </div>
 
-      <div className="zoom-controls">
-        <button onClick={handleZoomIn} aria-label="Zoom In">+</button>
-        <button onClick={handleZoomOut} aria-label="Zoom Out">-</button>
-      </div>
-
-      <div className="tour-container">
+           <div className="tour-container">
         <div
           className="device-view"
           ref={deviceViewRef}
@@ -417,39 +411,52 @@ const VirtualTour = ({ onTourEnd }) => {
           onMouseLeave={handleMouseUp}
           style={{ cursor: isDragging ? 'grabbing' : zoomLevel > 1 ? 'grab' : 'default' }}
         >
-          <img
-            ref={deviceImageRef}
-            src="/assets/images/lambda_health_system2.webp"
-            alt="Lambda Therapy Robot"
-            className="device-image"
-            loading="lazy"
+          <div 
+            className="image-container"
             style={{
               transform: `scale(${zoomLevel}) translate(${position.x / zoomLevel}px, ${position.y / zoomLevel}px)`,
               transition: 'transform 1.2s ease-in-out',
+              position: 'relative',
+              display: 'inline-block'
             }}
-          />
-          {allHotspots.map(hotspot => (
-            <button
-              key={hotspot.id}
-              className={`hotspot ${activeLabel === hotspot.id ? 'active' : ''}`}
+          >
+            <img
+              ref={deviceImageRef}
+              src="/assets/images/lambda_health_system2.webp"
+              alt="Lambda Therapy Robot"
+              className="device-image"
+              loading="lazy"
               style={{
-                top: hotspot.position.top,
-                left: hotspot.position.left,
-                opacity: activeLabel && activeLabel !== hotspot.id ? 0.5 : 1,
-                transform: `translate(-50%, -50%) scale(${1 / zoomLevel})`,
-                transformOrigin: 'center center'
+                display: 'block',
+                width: '100%',
+                height: 'auto'
               }}
-              onClick={() => {
-                setActiveLabel(hotspot.id === activeLabel ? null : hotspot.id);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              aria-label={hotspot.name}
-            >
-              <span className="marker"></span>
-              <span className="hotspot-pulse"></span>
-              <span className="hotspot-tooltip">{hotspot.name}</span>
-            </button>
-          ))}
+            />
+            {allHotspots.map(hotspot => (
+              <button
+                key={hotspot.id}
+                className={`hotspot ${activeLabel === hotspot.id ? 'active' : ''}`}
+                style={{
+                  position: 'absolute',
+                  top: hotspot.position.top,
+                  left: hotspot.position.left,
+                  opacity: activeLabel && activeLabel !== hotspot.id ? 0.5 : 1,
+                  transform: `translate(-50%, -50%)`,
+                  transformOrigin: 'center center',
+                  zIndex: 10
+                }}
+                onClick={() => {
+                  setActiveLabel(hotspot.id === activeLabel ? null : hotspot.id);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                aria-label={hotspot.name}
+              >
+                <span className="marker"></span>
+                <span className="hotspot-pulse"></span>
+                <span className="hotspot-tooltip">{hotspot.name}</span>
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
